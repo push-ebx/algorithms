@@ -1,0 +1,12 @@
+@import "app/styles/vars";
+
+.title {
+  color: $title-color;
+  font-size: $title-size;
+  font-weight: bold;
+
+  &::before {
+    content: "// ";
+    color: $red-color;
+  }
+}

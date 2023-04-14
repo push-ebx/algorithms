@@ -1,12 +1,11 @@
-import React from 'react';
 import './styles/index.scss';
+import React from "react";
+import Test from 'test';
 
-const App = () => {
+export default function App() {
   return (
     <div className="App">
-      123
+      <Test />
     </div>
   );
 }
-
-export default App;

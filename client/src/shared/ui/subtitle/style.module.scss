@@ -1,0 +1,14 @@
+@import "app/styles/vars";
+
+.subtitle {
+  color: $subtitle-color;
+  font-size: $subtitle-size;
+  font-weight: bold;
+
+  &::after {
+    content: " #";
+    color: $red-color;
+    position: relative;
+    top: 2px;
+  }
+}
