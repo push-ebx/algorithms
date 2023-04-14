@@ -1,0 +1,29 @@
+@import "app/styles/vars";
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+  background-color: $header-color;
+}
+
+.collapse_btn {
+  transform: rotate(90deg);
+  position: absolute;
+  left: 40px;
+  font-weight: bold;
+}
+
+.search_theme_user {
+  display: flex;
+  position: absolute;
+  right: 40px;
+  align-items: center;
+  column-gap: 40px;
+}
+
+.logo {
+  position: relative;
+  bottom: 5px;
+}

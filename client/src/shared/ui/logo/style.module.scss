@@ -1,0 +1,17 @@
+@import "app/styles/vars";
+
+.logo {
+  color: $logo-color;
+  font-size: $logo-size;
+  font-weight: bold;
+
+  &::before {
+    content: "{";
+    color: $red-color;
+  }
+
+  &::after {
+    content: "}";
+    color: $red-color;
+  }
+}

@@ -4,6 +4,7 @@
   color: $title-color;
   font-size: $title-size;
   font-weight: bold;
+  text-align: center;
 
   &::before {
     content: "// ";

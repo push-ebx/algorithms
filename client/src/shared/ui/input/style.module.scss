@@ -1,0 +1,10 @@
+@import "app/styles/vars";
+
+.input {
+  width: 250px;
+  height: 30px;
+  border: 1px $placeholder-color solid;
+  border-radius: 5px;
+  font-size: $input-font-size;
+  outline: none;
+}
