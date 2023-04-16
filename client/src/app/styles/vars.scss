@@ -1,12 +1,37 @@
+:root[data-theme="light"] {
+  --title-color: #1E1E1E;
+  --subtitle-color: #1E1E1E;
+  --text-color: #151515;
+  --placeholder-color: #b9b9b9;
+  --logo-color: #1E1E1E;
+  --header-color: #FFFFFF;
+  --background-page-color: #F9F9F9;
+  --background-article-color: #FFFFFF;
+}
+
+:root[data-theme="dark"] {
+  --title-color: #FFFFFF;
+  --subtitle-color: #FFFFFF;
+  --text-color: #FFFFFF;
+  --placeholder-color: #c2c2c2;
+  --logo-color: #FFFFFF;
+  --header-color: #2F2F2F;
+  --background-page-color: #333333;
+  --background-article-color: #2F2F2F;
+}
+
 $red-color: #FF4141;
-$title-color: #1E1E1E;
+$title-color: var(--title-color);
+$subtitle-color: var(--subtitle-color);
+$text-color: var(--text-color);
+$placeholder-color: var(--placeholder-color);
+$logo-color: var(--logo-color);
+$header-color: var(--header-color);
+$background-page-color: var(--background-page-color);
+$background-article-color: var(--background-article-color);
+
 $title-size: 46px;
-$subtitle-color: #1E1E1E;
 $subtitle-size: 24px;
-$text-color: #151515;
 $text-size: 18px;
-$placeholder-color: #D8D8D8;
-$logo-color: #1E1E1E;
 $logo-size: 35px;
 $input-font-size: 16px;
-$header-color: #FFF;
