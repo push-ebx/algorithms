@@ -4,3 +4,13 @@
 * {
   color: $text-color;
 }
+
+::-moz-selection {
+  background: $red-color;
+  color: $text-color-neg;
+}
+
+::selection {
+  background: $red-color;
+  color: $text-color-neg;
+}

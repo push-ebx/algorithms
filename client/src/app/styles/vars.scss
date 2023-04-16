@@ -2,6 +2,7 @@
   --title-color: #1E1E1E;
   --subtitle-color: #1E1E1E;
   --text-color: #151515;
+  --text-color-neg: #FFFFFF;
   --placeholder-color: #b9b9b9;
   --logo-color: #1E1E1E;
   --header-color: #FFFFFF;
@@ -13,6 +14,7 @@
   --title-color: #FFFFFF;
   --subtitle-color: #FFFFFF;
   --text-color: #FFFFFF;
+  --text-color-neg: #151515;
   --placeholder-color: #c2c2c2;
   --logo-color: #FFFFFF;
   --header-color: #2F2F2F;
@@ -24,6 +26,7 @@ $red-color: #FF4141;
 $title-color: var(--title-color);
 $subtitle-color: var(--subtitle-color);
 $text-color: var(--text-color);
+$text-color-neg: var(--text-color-neg);
 $placeholder-color: var(--placeholder-color);
 $logo-color: var(--logo-color);
 $header-color: var(--header-color);
