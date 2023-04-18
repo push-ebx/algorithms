@@ -14,14 +14,6 @@ export default function Test() {
       //@ts-ignore
       axios.get(url, { crossDomain: true }).then(res => setValue(res.data))
     })
-    
-    // listAll(imagesListRef).then((response) => {
-    //   response.items.forEach((item) => {
-    //     getDownloadURL(item).then((url) => {
-    //       console.log(url);
-    //     });
-    //   });
-    // });
   }, [])
 
   return (
