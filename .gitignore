@@ -1,3 +1,6 @@
 /node_modules
 /*/node_modules
 /fs-rtk
+/firebase-file-upload
+/todo
+/client/src/shared/config/firebase.ts
