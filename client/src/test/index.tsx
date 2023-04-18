@@ -1,7 +1,6 @@
 import React from "react";
 import MDEditor from '@uiw/react-md-editor';
 import CustomMarkdown from "entities/customMarkdown"
-import { Header } from "widgets/header";
 
 export default function Test() {
   const [value, setValue] = React.useState(`
@@ -25,8 +24,7 @@ export default function Test() {
 Заметим, что двоичная куча строится неоднозначно: например, значения сыновей, которые являются листами, всегда можно менять местами. Фиксирована только сама структура и предикат «родитель не больше детей».
 `);
   return (
-    <div style={{background: "var(--background-page-color)", height: "100vh"}}>
-      <Header />
+    <div style={{background: "var(--background-page-color)", transition: 'background 0.4s ease', height: "100vh"}}>
       <div className="container" style={{display: 'flex', columnGap: 20}}>
         {/* <MDEditor
           value={value}
@@ -41,7 +39,15 @@ export default function Test() {
           }}
         /> */}
         {/* <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> */}
-        <div style={{maxWidth: 750, margin: '30px auto', padding: 25, boxSizing: 'border-box', background: "var(--background-article-color)", borderRadius: 5}}>
+        <div style={{
+            maxWidth: 750, 
+            margin: '30px auto',
+            transition: 'background 0.4s ease',
+            padding: 25,
+            boxSizing: 'border-box', 
+            background: "var(--background-article-color)", 
+            borderRadius: 5
+        }}>
           <CustomMarkdown
             style={{}}
           >

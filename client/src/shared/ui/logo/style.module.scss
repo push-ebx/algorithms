@@ -4,6 +4,7 @@
   color: $logo-color;
   font-size: $logo-size;
   font-weight: bold;
+  cursor: pointer;
 
   &::before {
     content: "{";

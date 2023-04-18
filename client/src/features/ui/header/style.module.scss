@@ -6,6 +6,7 @@
   align-items: center;
   height: 75px;
   background-color: $header-color;
+  transition: background 0.4s ease;
 }
 
 .collapse_btn {

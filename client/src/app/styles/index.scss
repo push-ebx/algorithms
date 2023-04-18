@@ -5,6 +5,10 @@
   color: $text-color;
 }
 
+body {
+  background-color: var(--background-page-color);
+}
+
 ::-moz-selection {
   background: $red-color;
   color: $text-color-neg;
