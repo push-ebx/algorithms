@@ -5,7 +5,6 @@ import { storage } from "shared/config/firebase";
 import { ref, getDownloadURL } from "firebase/storage";
 import axios from "axios";
 import { Loader } from "shared/ui/loader";
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export default function Test() {

@@ -7,4 +7,4 @@ const db = firebase.firestore();
 const User = db.collection("Users");
 const Article = db.collection("Articles");
 
-module.exports = {User, Article};
+module.exports = {User, Article, db};
