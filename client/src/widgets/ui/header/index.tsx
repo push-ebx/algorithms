@@ -1,7 +1,7 @@
 import style from './style.module.scss'
 import { Logo } from "shared/ui/logo";
 import { Input } from "shared/ui/input";
-import SwitchTheme from 'features/ui/switchTheme';
+import SwitchTheme from '../../../features/switchTheme';
 import { Link } from 'react-router-dom';
 
 export const Header = () => {

@@ -36,7 +36,7 @@ class Users {
     return res.send('user was created')
   }
 
-  async getAllUsers(req, res) {
+  async getAll(req, res) {
     const snapshot = await User.get()
     const users = snapshot.docs.map(doc => doc.data());
 

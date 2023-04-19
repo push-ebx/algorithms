@@ -52,6 +52,18 @@ class Articles {
 
     return res.send(snap_article.docs[0].data())
   }
+
+  async getAll(req, res) {
+    const snapshot = await Article.get()
+    const articles = snapshot.docs.map(doc => {
+      return {
+        category: doc.data().category,
+        title: doc.data().title
+      }
+    });
+
+    return res.send(articles)
+  }
 }
 
 module.exports = new Articles();

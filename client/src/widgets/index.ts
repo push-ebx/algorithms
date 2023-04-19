@@ -1,2 +1,2 @@
-export * from "../features/ui/header";
+export * from "./ui/header";
 // export * from "./footer";
