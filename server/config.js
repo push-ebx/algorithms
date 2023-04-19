@@ -5,6 +5,6 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const User = db.collection("Users");
-const Articles = db.collection("Articles");
+const Article = db.collection("Articles");
 
-module.exports = {User, Articles};
+module.exports = {User, Article};

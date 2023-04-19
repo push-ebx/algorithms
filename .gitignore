@@ -4,6 +4,5 @@
 /firebase-file-upload
 /todo
 /client/src/shared/config/firebase.ts
-/d
 /server/.env
 /server/firebaseConfig.js
