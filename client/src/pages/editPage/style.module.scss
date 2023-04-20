@@ -1,0 +1,44 @@
+@import "app/styles/vars";
+
+.md-viewer {
+  width: 50vw;
+  overflow-y: auto;
+  box-sizing: border-box;
+  color: $text-color;
+  background-color: $background-article-color;
+  padding: 1% 5%;
+  border: 1px #555555 solid;
+  border-radius: 3px;
+  max-height: calc(100vh - 150px) !important;
+  min-height: 300px !important;
+}
+
+.md-editor {
+  width: 50vw;
+  overflow-y: auto;  
+  height: auto !important;
+  max-height: calc(100vh - 150px) !important;
+  min-height: 300px !important;
+}
+
+.editor {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  padding: 10px;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  column-gap: 5px;
+  box-sizing: border-box;
+}
+
+.navbar {
+  display: flex;
+  justify-content: right;
+  column-gap: 10px;
+
+}

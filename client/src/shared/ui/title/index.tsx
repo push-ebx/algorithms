@@ -7,6 +7,6 @@ type Props = {
 
 export const Title = ({children}: Props) => {
   return (
-    <h1 className={style.title}>{children}</h1>
+    <div className={style.title}>{children}</div>
   );
 };

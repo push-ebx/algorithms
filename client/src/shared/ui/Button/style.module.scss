@@ -1,0 +1,18 @@
+@import "app/styles/vars";
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 10px 25px;
+  background-color: transparent;
+  color: $text-color;
+  border-radius: 3px;
+  border: 1px solid $red-color;
+
+  &:hover {
+    background-color: $red-color;
+    color: #fff;
+  }
+}
