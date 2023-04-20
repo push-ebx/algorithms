@@ -1,30 +1,31 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import MDEditor from '@uiw/react-md-editor';
 import CustomMarkdown from "shared/ui/customMarkdown"
 import { storage } from "shared/config/firebase";
-import { ref, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import axios from "axios";
 import { Loader } from "shared/ui/loader";
 import { getArticleByTitle } from "shared/api/articles"
 import { useSearchParams } from "react-router-dom";
 
 export default function Test() {
-  const [value, setValue] = React.useState<string | null>(null);
+  const [value, setValue] = useState<string | null>(null);
   // const imagesListRef = ref(storage, "articles/testArticle.md");
   let [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const fetch = async () => {
-      const res = await getArticleByTitle(searchParams.get('title')!)
-      const url = res?.data?.file_url
-      if (url) {
-        axios.get(url).then(res => setValue(res.data))
-      } else {
-        setValue('# Page not fonud')
-      }
-    }
 
-    fetch().catch(e => console.log(e))
+    // const fetch = async () => {
+    //   const res = await getArticleByTitle(searchParams.get('title')!)
+    //   const url = res?.data?.file_url
+    //   if (url) {
+    //     axios.get(url).then(res => setValue(res.data))
+    //   } else {
+    //     setValue('# Page not fonud')
+    //   }
+    // }
+
+    // fetch().catch(e => console.log(e))
     
     // getDownloadURL(imagesListRef).then((url) => {
     //   //@ts-ignore

@@ -4,7 +4,8 @@ import style from './style.module.scss'
 type Props = {
   placeholder?: string,
   className?: string,
-  style?: CSSProperties
+  style?: CSSProperties,
+  onChange: (value: string) => void,
 }
 
 export const Input = (props: Props) => {
@@ -13,7 +14,8 @@ export const Input = (props: Props) => {
       placeholder={props.placeholder}
       className={`${style.input} ${props.className}`} 
       style={style}
-      type="text" 
+      type="text"
+      onChange={(e) => props.onChange(e.target.value)}
     />
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import style from './style.module.scss'
 import { Button } from "shared/ui/Button"
 import CustomMarkdown from "shared/ui/customMarkdown"
@@ -8,11 +8,32 @@ import { useSearchParams } from 'react-router-dom';
 import { getArticleByTitle } from 'shared/api/articles';
 import { Modal } from "shared/ui/modal";
 import { Input } from "shared/ui/input";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { storage } from "shared/config/firebase";
 
 const EditPage = () => {
   const [value, setValue] = useState<string | undefined>();
-  const [searchParams] = useSearchParams();
+
+  const [title, setTitle] = useState<string | undefined>();
+  const [author, setAuthor] = useState<string | undefined>();
+  const [category, setCategory] = useState<string | undefined>();
+  const [subCategory, setSubCategory] = useState<string | undefined>();
+  
   const [modalActive, setModalActive] = useState<boolean>(false);
+  const [searchParams] = useSearchParams();
+
+  const uploadArticle = () => {
+    if (!value) return;
+
+    const file = new Blob([value], { type: 'application/octet-stream' });
+    
+    const fileRef = ref(storage, `articles/${title}.md`);
+    uploadBytes(fileRef, file).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        console.log(url)
+      });
+    });
+  }
 
   useEffect(() => { // вынести
     const fetch = async () => {
@@ -27,6 +48,11 @@ const EditPage = () => {
 
     fetch().catch(e => console.log(e))
   }, [])
+
+  const saveDraw = () => {
+    uploadArticle()
+    setModalActive(false)
+  }
 
   return (
     <div className={style.editor}>
@@ -55,26 +81,26 @@ const EditPage = () => {
 
       <Modal
         handleClickClose={() => setModalActive(false)}
-        handleClickOk={() => setModalActive(false)}
+        handleClickOk={() => saveDraw()}
         active={modalActive}
         title={"Сохранение"}
       >
         <div className={style.fields}>
           <div>
             <span>Название:</span>
-            <Input placeholder="Введите название статьи..."/>
+            <Input onChange={setTitle} placeholder="Введите название статьи..."/>
           </div>
           <div>
             <span>Автор:</span>
-            <Input placeholder="Введите имя автора..."/>
+            <Input onChange={setAuthor} placeholder="Введите имя автора..."/>
           </div>
           <div>
             <span>Раздел:</span>
-            <Input placeholder="Введите название раздела..."/>
+            <Input onChange={setCategory} placeholder="Выберите раздел..."/>
           </div>
           <div>
             <span>Подраздел:</span>
-            <Input placeholder="Введите название подраздела..."/>
+            <Input onChange={setSubCategory} placeholder="Выберите подраздел..."/>
           </div>
         </div> 
       </Modal>
