@@ -5,7 +5,7 @@ import CustomMarkdown from "shared/ui/customMarkdown"
 import CustomMDEditor from "shared/ui/customMDEditor"
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
-import { getArticleByTitle } from 'shared/api/articles';
+import { create, getArticleByTitle } from 'shared/api/articles';
 import { Modal } from "shared/ui/modal";
 import { Input } from "shared/ui/input";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -29,13 +29,28 @@ const EditPage = () => {
     
     const fileRef = ref(storage, `articles/${title}.md`);
     uploadBytes(fileRef, file).then((snapshot) => {
-      getDownloadURL(snapshot.ref).then((url) => {
-        console.log(url)
+      getDownloadURL(snapshot.ref).then((file_url) => {
+        if (title && author && category && file_url) {
+          const article = {
+            title,
+            author,
+            file_url,
+            category: category + '/' + subCategory
+          }
+
+          // тут будет параметром принимать
+          const fetchCreateArticle = async () => { 
+            const res = await create(article)
+            console.log(res?.data);
+          }
+
+          fetchCreateArticle()
+        }
       });
     });
   }
 
-  useEffect(() => { // вынести
+  useEffect(() => {
     const fetch = async () => {
       const res = await getArticleByTitle(searchParams.get('title')!)
       const url = res?.data?.file_url
@@ -50,7 +65,9 @@ const EditPage = () => {
   }, [])
 
   const saveDraw = () => {
-    uploadArticle()
+    if (title && author && category && subCategory) {
+      uploadArticle()
+    }
     setModalActive(false)
   }
 

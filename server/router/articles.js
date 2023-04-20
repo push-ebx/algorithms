@@ -26,10 +26,10 @@ class Articles {
     
     await Article.doc(count_articles+1+'').set({
       author,
-      author_id,
+      // author_id,
       category,
-      date_creation,
-      date_publication,
+      // date_creation,
+      // date_publication,
       file_url,
       title
     });
