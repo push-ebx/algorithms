@@ -1,59 +1,59 @@
 @import "app/styles/vars";
 
-.loader {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin-left: -40px;
-  margin-top: -40px;
-}
-.loader div {
-  position: absolute;
-  top: 33px;
-  width: 13px;
-  height: 13px;
-  border-radius: 50%;
-  background: $text-color;
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-.loader div:nth-child(1) {
-  left: 8px;
-  animation: loader1 0.6s infinite;
-}
-.loader div:nth-child(2) {
-  left: 8px;
-  animation: loader2 0.6s infinite;
-}
-.loader div:nth-child(3) {
-  left: 32px;
-  animation: loader2 0.6s infinite;
-}
-.loader div:nth-child(4) {
-  left: 56px;
-  animation: loader3 0.6s infinite;
-}
-@keyframes loader1 {
-  0% {
-    transform: scale(0);
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    padding: 20px;
+    color: $text-color;
+    background-color: $background-page-color;
+
+    .title {
+      color: $text-color;
+      font-size: 20px;
+    }
+    
+    header {
+      display: flex;
+      justify-content: space-between;
+      justify-items: center; 
+      justify-items: center;
+    }
+  
+    .cross {
+      border-radius: 50%;
+      padding: 3px;
+      box-sizing: border-box;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }  
+    }
+  
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: right;
+    }
   }
-  100% {
-    transform: scale(1);
-  }
 }
-@keyframes loader3 {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-@keyframes loader2 {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(24px, 0);
-  }
+
+.active {
+  opacity: 1;
+  pointer-events: all;
 }
