@@ -3,10 +3,15 @@
 .input {
   width: 250px;
   height: 30px;
-  border: 1px $placeholder-color solid;
-  border-radius: 5px;
+  border: 1px #555 solid;
+  background-color: transparent;
+  border-radius: 3px;
   font-size: $input-font-size;
   outline: none;
   color: $placeholder-color;
-  padding-left: 15px;
+  padding-left: 10px;
+
+  &:focus {
+    border-color: $red-color;
+  }
 }
