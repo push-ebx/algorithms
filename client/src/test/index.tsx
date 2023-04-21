@@ -14,7 +14,6 @@ export default function Test() {
   let [searchParams] = useSearchParams();
 
   useEffect(() => {
-
     // const fetch = async () => {
     //   const res = await getArticleByTitle(searchParams.get('title')!)
     //   const url = res?.data?.file_url

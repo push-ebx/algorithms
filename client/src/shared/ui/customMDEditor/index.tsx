@@ -17,11 +17,11 @@ const CustomMDEditor = (props: Props) => {
   
   return (
     <MDEditor
-      className={`${style['md-editor']} ${props.className}`} 
+      className={`${style['md-editor']} ${props.className}`}
       value={props.value}
       visibleDragbar={false}
       onChange={props.setValue}
-      data-color-mode={theme}  
+      data-color-mode={theme}
       preview='edit'
       style={props.style}
     />

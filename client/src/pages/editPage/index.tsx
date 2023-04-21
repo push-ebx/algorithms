@@ -13,7 +13,7 @@ import { storage } from "shared/config/firebase";
 
 const EditPage = () => {
   const [value, setValue] = useState<string | undefined>();
-
+  // article: {} <Article> + id, author_id...
   const [title, setTitle] = useState<string | undefined>();
   const [author, setAuthor] = useState<string | undefined>();
   const [category, setCategory] = useState<string | undefined>();
@@ -26,8 +26,8 @@ const EditPage = () => {
     if (!value) return;
 
     const file = new Blob([value], { type: 'application/octet-stream' });
-    
     const fileRef = ref(storage, `articles/${title}.md`);
+
     uploadBytes(fileRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((file_url) => {
         if (title && author && category && file_url) {
@@ -67,8 +67,8 @@ const EditPage = () => {
   const saveDraw = () => {
     if (title && author && category && subCategory) {
       uploadArticle()
+      setModalActive(false)
     }
-    setModalActive(false)
   }
 
   return (
@@ -96,6 +96,7 @@ const EditPage = () => {
         <Button>Опубликовать</Button>
       </nav>
 
+      // разделить на ui/components
       <Modal
         handleClickClose={() => setModalActive(false)}
         handleClickOk={() => saveDraw()}

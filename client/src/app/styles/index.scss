@@ -18,3 +18,19 @@ body {
   background: $red-color;
   color: $text-color-neg;
 }
+
+// md-editor
+.w-md-editor-toolbar {
+  background-color: $background-article-color !important;
+}
+
+.w-md-editor-text-input  {
+  background-color: $background-article-color !important;
+  -webkit-text-fill-color: $text-color !important;
+  font-family: $font-family !important;
+  font-size: 16px !important;
+}
+
+.w-md-editor-input {
+  border-radius: 0px !important; 
+}
