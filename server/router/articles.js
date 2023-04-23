@@ -49,8 +49,11 @@ class Articles {
     if (snap_article.empty) {
       return res.send('No matching articles')
     }
-
-    return res.send(snap_article.docs[0].data())
+    const article = {
+      id: +snap_article.docs[0].id,
+      ...snap_article.docs[0].data()
+    }
+    return res.send(article)
   }
 
   async getAll(req, res) {

@@ -1,10 +1,10 @@
 import './styles/index.scss';
 import {useEffect} from "react";
 import { Routes, Route, Link } from 'react-router-dom'
-import Test from 'test';
-import Content from 'pages/Contents';
+import Content from 'pages/contentPage';
 import Layout from "widgets/ui/Layout"
 import EditPage from 'pages/editPage/';
+import ArticlePage from 'pages/articlePage';
 
 export default function App() {
   useEffect(() => {
@@ -16,8 +16,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Content />} />
-          <Route path="article" element={<Test />} />
-          <Route path="edit" element={<EditPage />} />
+          <Route path="article" element={<ArticlePage />} />
+          <Route path="article/edit" element={<EditPage />} />
           <Route path="*" element={<Content />} />
         </Route>
       </Routes>

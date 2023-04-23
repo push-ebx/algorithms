@@ -41,9 +41,8 @@ const EditPage = () => {
           // тут будет параметром принимать
           const fetchCreateArticle = async () => { 
             const res = await createArticle(article)
-            console.log(res?.data);
+            console.log(res);
           }
-
           fetchCreateArticle()
         }
       });
@@ -53,11 +52,10 @@ const EditPage = () => {
   useEffect(() => {
     const fetch = async () => {
       const res = await getArticleByTitle(searchParams.get('title')!)
-      const url = res?.data?.file_url
+      const url = res?.file_url
+
       if (url) {
         axios.get(url).then(res => setValue(res.data))
-      } else {
-        setValue('# Page not fonud')
       }
     }
 

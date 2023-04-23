@@ -1,0 +1,23 @@
+@import "app/styles/vars";
+
+.article {
+  max-width: 750px;
+  margin: 30px auto 0;
+  transition: background 0.4s ease;
+  padding: 25px;
+  box-sizing: border-box;
+  background: $background-article-color;
+  border-radius: 5px;
+}
+
+.page {
+  background: $background-page-color;
+  transition: background 0.4s ease;
+  height: calc(100% - 75px);
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

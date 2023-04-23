@@ -1,20 +1,17 @@
 import axios from 'axios';
+import { Article } from 'shared/model';
 // тут импорт модели типо
-
-interface Article {
-  title: string;
-  author: string;
-  category: string;
-  file_url: string;
-}
 
 const axios_proxy = axios.create({
   baseURL: `http://localhost:4000/api/articles/`
 });
 
-export const getArticleByTitle = async (title: string) => {
+export const getArticleByTitle = async (title: string): Promise<Article | undefined> => {
   try {
-    if (title) return await axios_proxy.get(`/getByTitle?title=${title}`)
+    if (title) {
+      const res = await axios_proxy.get(`/getByTitle?title=${title}`)
+      return res.data
+    }
     else throw new Error("title param is empty")
   } catch (e) {
     console.log(e)
@@ -22,17 +19,19 @@ export const getArticleByTitle = async (title: string) => {
 }
 
 
-export const createArticle = async (article: Article) => {
+export const createArticle = async (article: Article): Promise<string | undefined> => {
   try {
-    return await axios_proxy.post(`/create`, article)
+    const res = await axios_proxy.post(`/create`, article)
+    return res.data
   } catch (e) {
     console.log(e)
   }
 }
 
-export const getAllArticles = async () => {
+export const getAllArticles = async (): Promise<Article[] | undefined> => {
   try {
-    return await axios_proxy.get(`/getAll`)
+    const res = await axios_proxy.get(`/getAll`)
+    return res.data
   } catch (e) {
     console.log(e)
   }

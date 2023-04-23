@@ -1,24 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { getAllArticles } from 'shared/api/articles';
+import { Article } from 'shared/model';
 
-interface Article {
-  title: string;
-  author: string;
-  file_url: string;
-  category: string;
-}
-
-const Contents = () => {
-  const [articles, setArticles] = useState<Article[]>([]) // внести интерфейс
+const Content = () => {
+  const [articles, setArticles] = useState<Article[]>([])
 
   const fetchArticles = async () => {
     const res = await getAllArticles()
-    const data = res?.data
-    
-    if (data) {
-      setArticles(data)
-    }   
+    res && setArticles(res)
   }
 
   useEffect(() => {
@@ -33,9 +24,9 @@ const Contents = () => {
           articles.map(article => {
             return (
               // key -- id статьи
-              <Link 
+              <Link
                 key={article.title}
-                to={`/article/edit?title=${article.title}`}
+                to={`/article?title=${article.title}`}
               >
                 {article.title}
               </Link>
@@ -47,4 +38,4 @@ const Contents = () => {
   );
 }
  
-export default Contents;
+export default Content;
