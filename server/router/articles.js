@@ -18,7 +18,7 @@ class Articles {
     return res.send(article_candidate)
   }
 
-  async create(req, res) {
+  async create(req, res) { // проверка на уникальность title
     const {author, author_id, category, date_creation, date_publication, file_url, title} = req.body
 
     const snapshot = await Article.get();
@@ -55,10 +55,14 @@ class Articles {
 
   async getAll(req, res) {
     const snapshot = await Article.get()
+
     const articles = snapshot.docs.map(doc => {
+      const data = doc.data()
       return {
-        category: doc.data().category,
-        title: doc.data().title
+        category: data.category,
+        title: data.title,
+        file_url: data.file_url,
+        author: data.author
       }
     });
 

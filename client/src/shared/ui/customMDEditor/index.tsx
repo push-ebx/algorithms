@@ -24,6 +24,7 @@ const CustomMDEditor = (props: Props) => {
       data-color-mode={theme}
       preview='edit'
       style={props.style}
+      
     />
   );
 };

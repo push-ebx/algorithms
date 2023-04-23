@@ -5,7 +5,7 @@ import CustomMarkdown from "shared/ui/customMarkdown"
 import CustomMDEditor from "shared/ui/customMDEditor"
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
-import { create, getArticleByTitle } from 'shared/api/articles';
+import { createArticle, getArticleByTitle } from 'shared/api/articles';
 import { Modal } from "shared/ui/modal";
 import { Input } from "shared/ui/input";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -40,7 +40,7 @@ const EditPage = () => {
 
           // тут будет параметром принимать
           const fetchCreateArticle = async () => { 
-            const res = await create(article)
+            const res = await createArticle(article)
             console.log(res?.data);
           }
 
@@ -96,7 +96,7 @@ const EditPage = () => {
         <Button>Опубликовать</Button>
       </nav>
 
-      // разделить на ui/components
+      {/* разделить на ui/components мб в фичи? */}
       <Modal
         handleClickClose={() => setModalActive(false)}
         handleClickOk={() => saveDraw()}

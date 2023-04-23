@@ -21,9 +21,18 @@ export const getArticleByTitle = async (title: string) => {
   }
 }
 
-export const create = async (article: Article) => {
+
+export const createArticle = async (article: Article) => {
   try {
     return await axios_proxy.post(`/create`, article)
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const getAllArticles = async () => {
+  try {
+    return await axios_proxy.get(`/getAll`)
   } catch (e) {
     console.log(e)
   }
