@@ -14,7 +14,6 @@ const EditPage = () => {
   const [article, setArticle] = useState<Article>()
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
-  const [showOffCanvas, setShowOffCanvas] = useState(false);
 
   const uploadArticle = () => {
     if (!value) return;

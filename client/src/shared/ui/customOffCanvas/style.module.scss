@@ -1,7 +1,19 @@
 @import "app/styles/vars";
 
-.md-editor {
-  overflow-y: auto;
-  border: 1px #555555 solid;
-  box-shadow: none;
+.header {
+  color: $text-color;
+}
+
+.main {
+  background-color: $background-article-color;
+  width: auto !important;
+  min-width: 300px !important;
+}
+
+.body {
+
+}
+
+li {
+  list-style: none;
 }

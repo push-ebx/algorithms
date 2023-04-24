@@ -1,18 +1,21 @@
 import style from './style.module.scss'
-import { Input, IconButton, Logo } from "shared/ui";
+import { Input, Logo } from "shared/ui";
 import SwitchTheme from '../../../features/switchTheme';
 import { Link } from 'react-router-dom';
-import CollapseButton from './CollapseButton.svg'
+import { ReactComponent as CollapseButton} from './CollapseButton.svg'
+import { ReactComponent as User } from './User.svg'
 import { setShowOffCanvas } from 'shared/ui/customOffCanvas/customOffCanvasSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 export const Header = () => {
   const dispatch = useDispatch()
+  // fix
+  // @ts-ignore
+  const theme = useSelector(state => state.theme)
 
   return (
     <header className={style.header}>
-      <IconButton
-        src={CollapseButton}
+      <CollapseButton
         className={style.collapse_btn}
         onClick={() => dispatch(setShowOffCanvas(true))}
       />
@@ -20,7 +23,7 @@ export const Header = () => {
       <div className={style.search_theme_user}>
         <Input onChange={()=>{}} className={style.input} placeholder="Поиск..." />
         <SwitchTheme />
-        <div style={{width: '30px', height: '30px', background: '#777', borderRadius: '50%'}} />
+        <User stroke={theme === 'dark' ? 'white' : 'black'}/>
       </div>
     </header>
   );

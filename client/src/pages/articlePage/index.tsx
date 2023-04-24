@@ -7,6 +7,7 @@ import { getArticleByTitle } from "shared/api/articles"
 
 const ArticlePage = () => {
   const [value, setValue] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
 
   const fetchArticle = async () => {
@@ -17,6 +18,7 @@ const ArticlePage = () => {
       const url = res?.file_url
 
       return url && axios.get(url).then(res => {
+        setIsLoading(false)
         return setValue(res.data)
       })
     }
@@ -24,12 +26,13 @@ const ArticlePage = () => {
   }
 
   useEffect(() => {
-    fetchArticle()
+    setIsLoading(true)
+    fetchArticle()    
   }, [searchParams])
 
   return (
     <div className={style.page}>
-      { value ?
+      { value && !isLoading ?
         (<div className={style.article}>
           <CustomMarkdown>
             {value}

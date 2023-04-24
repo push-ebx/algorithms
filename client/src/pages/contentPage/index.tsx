@@ -17,22 +17,23 @@ const Content = () => {
 
   return (
     <div>
-      <h1>Content</h1>
-      <div style={{display: 'flex', flexDirection: 'column'}}>
+      <h1 style={{color: 'var(--text-color)', textAlign: 'center'}}>Content</h1>
+      <ul style={{display: 'flex', flexDirection: 'column'}}>
         {
           articles.map(article => {
             return (
-              // key -- id статьи
-              <Link
-                key={article.id}
-                to={`/article?title=${article.title}`}
-              >
-                {article.title}
-              </Link>
+              <li>
+                <Link
+                  key={article.id}
+                  to={`/article?title=${article.title}`}
+                >
+                  {article.title}
+                </Link>
+              </li>
             )
           })
         }
-      </div>
+      </ul>
     </div>
   );
 }
