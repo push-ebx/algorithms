@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MDEditor from '@uiw/react-md-editor';
-import CustomMarkdown from "shared/ui/customMarkdown"
+import {CustomMarkdown} from "shared/ui/customMarkdown"
 import { storage } from "shared/config/firebase";
 import { ref, getDownloadURL, uploadBytes } from "firebase/storage";
 import axios from "axios";

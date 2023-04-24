@@ -11,7 +11,7 @@ type Props = {
   className?: string
 }
 
-const CustomMarkdown = (props: Props) => {
+export const CustomMarkdown = (props: Props) => {
   return (
     <div className={`${style['md-viewer']} ${props.className}`} >
       <Markdown
@@ -29,5 +29,3 @@ const CustomMarkdown = (props: Props) => {
     </div>
   )
 }
-
-export default CustomMarkdown;

@@ -18,6 +18,7 @@ export default function App() {
           <Route index element={<Content />} />
           <Route path="article" element={<ArticlePage />} />
           <Route path="article/edit" element={<EditPage />} />
+          <Route path="article/create" element={<EditPage />} />
           <Route path="*" element={<Content />} />
         </Route>
       </Routes>

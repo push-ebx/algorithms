@@ -2,9 +2,8 @@ import axios from "axios";
 import style from "./style.module.scss"
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import CustomMarkdown from "shared/ui/customMarkdown"
+import { CustomMarkdown, Loader } from "shared/ui"
 import { getArticleByTitle } from "shared/api/articles"
-import { Loader } from "shared/ui/loader";
 
 const ArticlePage = () => {
   const [value, setValue] = useState<string | null>(null);

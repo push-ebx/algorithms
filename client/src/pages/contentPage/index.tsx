@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import { getAllArticles } from 'shared/api/articles';
 import { Article } from 'shared/model';
 
@@ -25,7 +24,7 @@ const Content = () => {
             return (
               // key -- id статьи
               <Link
-                key={article.title}
+                key={article.id}
                 to={`/article?title=${article.title}`}
               >
                 {article.title}

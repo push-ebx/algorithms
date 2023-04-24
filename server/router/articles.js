@@ -62,6 +62,7 @@ class Articles {
     const articles = snapshot.docs.map(doc => {
       const data = doc.data()
       return {
+        id: +doc.id,
         category: data.category,
         title: data.title,
         file_url: data.file_url,

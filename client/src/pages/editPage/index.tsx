@@ -1,24 +1,17 @@
 import { useEffect, useState } from "react";
-import style from './style.module.scss'
-import { Button } from "shared/ui/Button"
-import CustomMarkdown from "shared/ui/customMarkdown"
-import CustomMDEditor from "shared/ui/customMDEditor"
-import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';
+import style from './style.module.scss'
+import { Button, CustomMarkdown, CustomMDEditor, Modal, Input } from "shared/ui"
+import { Article } from "shared/model";
 import { createArticle, getArticleByTitle } from 'shared/api/articles';
-import { Modal } from "shared/ui/modal";
-import { Input } from "shared/ui/input";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "shared/config/firebase";
+import axios from 'axios';
+import { CustomModal } from "./modal";
 
 const EditPage = () => {
   const [value, setValue] = useState<string | undefined>();
-  // article: {} <Article> + id, author_id...
-  const [title, setTitle] = useState<string | undefined>();
-  const [author, setAuthor] = useState<string | undefined>();
-  const [category, setCategory] = useState<string | undefined>();
-  const [subCategory, setSubCategory] = useState<string | undefined>();
-  
+  const [article, setArticle] = useState<Article>()
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
 
@@ -26,44 +19,43 @@ const EditPage = () => {
     if (!value) return;
 
     const file = new Blob([value], { type: 'application/octet-stream' });
-    const fileRef = ref(storage, `articles/${title}.md`);
+    const fileRef = ref(storage, `articles/${article?.title}.md`);
 
     uploadBytes(fileRef, file).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((file_url) => {
-        if (title && author && category && file_url) {
-          const article = {
-            title,
-            author,
-            file_url,
-            category: category + '/' + subCategory
-          }
-
-          // тут будет параметром принимать
-          const fetchCreateArticle = async () => { 
-            const res = await createArticle(article)
-            console.log(res);
-          }
-          fetchCreateArticle()
+        if (article?.title && article?.author && article?.category) {
+          const _article = {file_url, ...article}
+          fetchCreateArticle(_article)
         }
       });
     });
   }
 
-  useEffect(() => {
-    const fetch = async () => {
-      const res = await getArticleByTitle(searchParams.get('title')!)
+  const fetchCreateArticle = async (_article: Article) => { 
+    const res = await createArticle(_article)
+    console.log(res);
+  }
+  
+  const fetchArticle = async () => {
+    const title = searchParams.get('title')
+    
+    if (title) {
+      const res = await getArticleByTitle(title)
       const url = res?.file_url
 
       if (url) {
-        axios.get(url).then(res => setValue(res.data))
+        return axios.get(url).then(res => setValue(res.data))
       }
+      return setValue('# Page not found')
     }
+  }
 
-    fetch().catch(e => console.log(e))
+  useEffect(() => {
+    fetchArticle()
   }, [])
 
   const saveDraw = () => {
-    if (title && author && category && subCategory) {
+    if (article?.title && article?.author && article?.category) {
       uploadArticle()
       setModalActive(false)
     }
@@ -94,32 +86,12 @@ const EditPage = () => {
         <Button>Опубликовать</Button>
       </nav>
 
-      {/* разделить на ui/components мб в фичи? */}
-      <Modal
-        handleClickClose={() => setModalActive(false)}
-        handleClickOk={() => saveDraw()}
-        active={modalActive}
-        title={"Сохранение"}
-      >
-        <div className={style.fields}>
-          <div>
-            <span>Название:</span>
-            <Input onChange={setTitle} placeholder="Введите название статьи..."/>
-          </div>
-          <div>
-            <span>Автор:</span>
-            <Input onChange={setAuthor} placeholder="Введите имя автора..."/>
-          </div>
-          <div>
-            <span>Раздел:</span>
-            <Input onChange={setCategory} placeholder="Выберите раздел..."/>
-          </div>
-          <div>
-            <span>Подраздел:</span>
-            <Input onChange={setSubCategory} placeholder="Выберите подраздел..."/>
-          </div>
-        </div> 
-      </Modal>
+      <CustomModal 
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        setArticle={setArticle}
+        saveDraw={saveDraw}
+      />
     </div>
   );
 }

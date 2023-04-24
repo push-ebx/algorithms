@@ -10,7 +10,7 @@ type Props = {
   setValue? : (value?: string) => void
 }
 
-const CustomMDEditor = (props: Props) => {
+export const CustomMDEditor = (props: Props) => {
   // fix
   // @ts-ignore
   const theme = useSelector(state => state.theme)
@@ -28,5 +28,3 @@ const CustomMDEditor = (props: Props) => {
     />
   );
 };
-
-export default CustomMDEditor;
