@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from 'react-router-dom';
 import style from './style.module.scss'
-import { Button, CustomMarkdown, CustomMDEditor, Modal, Input } from "shared/ui"
+import { Button, CustomMarkdown, CustomMDEditor, CustomOffCanvas } from "shared/ui"
 import { Article } from "shared/model";
 import { createArticle, getArticleByTitle } from 'shared/api/articles';
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -14,6 +14,7 @@ const EditPage = () => {
   const [article, setArticle] = useState<Article>()
   const [modalActive, setModalActive] = useState<boolean>(false);
   const [searchParams] = useSearchParams();
+  const [showOffCanvas, setShowOffCanvas] = useState(false);
 
   const uploadArticle = () => {
     if (!value) return;

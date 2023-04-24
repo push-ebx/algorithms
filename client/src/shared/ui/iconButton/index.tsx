@@ -3,16 +3,17 @@ import style from './style.module.scss'
 type Props = {
   src: string,
   alt?: string,
-  onClick?: () => void
+  onClick?: () => void,
+  className?: string,
 }
 
-export const IconButton = ({src, alt, onClick}: Props) => {
+export const IconButton = (props: Props) => {
   return (
     <img 
-      src={src}
-      alt={alt}
-      onClick={onClick}
-      className={style.button}
+      src={props.src}
+      alt={props.alt}
+      onClick={props.onClick}
+      className={`${style.button} ${props.className}`}
     />
   );
 };

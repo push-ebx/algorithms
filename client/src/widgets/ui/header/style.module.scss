@@ -10,11 +10,10 @@
 }
 
 .collapse_btn {
-  transform: rotate(90deg);
-  position: absolute;
+  position: fixed;
   left: 40px;
-  font-weight: bold;
-  color: $text-color;
+  width: 20px;
+  height: 20px;
 }
 
 .search_theme_user {
