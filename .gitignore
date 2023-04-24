@@ -5,4 +5,4 @@
 /todo
 /client/src/shared/config/firebase.ts
 /server/.env
-/server/firebaseConfig.js
+# /server/firebaseConfig.js

@@ -1,4 +1,4 @@
-export * from "./Button"
+export * from "./button"
 export * from "./customMDEditor"
 export * from "./customMarkdown"
 export * from "./iconButton"

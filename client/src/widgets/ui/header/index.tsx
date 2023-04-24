@@ -15,10 +15,14 @@ export const Header = () => {
 
   return (
     <header className={style.header}>
-      <CollapseButton
-        className={style.collapse_btn}
+      <div 
+        className={style.wrapper_collapse_btn}
         onClick={() => dispatch(setShowOffCanvas(true))}
-      />
+      >
+        <CollapseButton
+          className={style.collapse_btn}
+        />
+      </div>
       <Link to="/"><Logo className={style.logo}>Algs</Logo></Link>
       <div className={style.search_theme_user}>
         <Input onChange={()=>{}} className={style.input} placeholder="Поиск..." />

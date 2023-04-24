@@ -1,6 +1,6 @@
 import { CSSProperties, ReactNode } from 'react';
 import style from './style.module.scss'
-import { Button } from '../Button';
+import { Button } from '../button';
 import CrossIcon from "./x.svg"
 import { useSelector } from 'react-redux';
 

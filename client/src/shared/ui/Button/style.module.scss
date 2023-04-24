@@ -10,6 +10,7 @@
   color: $text-color;
   border-radius: 3px;
   border: 1px solid $red-color;
+  user-select: none;
 
   &:hover {
     background-color: $red-color;
