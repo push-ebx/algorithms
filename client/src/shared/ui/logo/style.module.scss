@@ -5,6 +5,7 @@
   font-size: $logo-size;
   font-weight: bold;
   cursor: pointer;
+  user-select: none;
 
   &::before {
     content: "{";

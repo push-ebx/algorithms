@@ -19,15 +19,16 @@ class Articles {
   }
 
   async create(req, res) { // проверка на уникальность title
-    const {author, author_id, category, date_creation, date_publication, file_url, title} = req.body
+    const {author, author_id, category, subcategory, date_creation, date_publication, file_url, title} = req.body
 
     const snapshot = await Article.get();
     const count_articles = snapshot.size
-    
+    console.log(count_articles)
     await Article.doc(count_articles+1+'').set({
       author,
       // author_id,
       category,
+      subcategory,
       // date_creation,
       // date_publication,
       file_url,
@@ -64,6 +65,7 @@ class Articles {
       return {
         id: +doc.id,
         category: data.category,
+        subcategory: data.subcategory,
         title: data.title,
         file_url: data.file_url,
         author: data.author
@@ -71,6 +73,45 @@ class Articles {
     });
 
     return res.send(articles)
+  }
+
+  async getAllByCategories(req, res) {
+    const snapshot = await Article.get()
+
+    const articles = snapshot.docs.map(doc => {
+      const data = doc.data()
+      return {
+        id: +doc.id,
+        category: data.category,
+        subcategory: data.subcategory,
+        title: data.title,
+        file_url: data.file_url,
+        author: data.author
+      }
+    });
+
+    const categories = {}
+    
+    // PZDC O(n)
+    articles.forEach(article => {
+      if (article.category && article.subcategory) {
+        if (!categories[article.category]) {
+          categories[article.category] = {}
+        }
+        if (!categories[article.category][article.subcategory]) {
+          categories[article.category][article.subcategory] = []
+        }
+
+        if (categories[article.category][article.subcategory].length) {
+          categories[article.category][article.subcategory].push(article)
+        }
+        else {
+          categories[article.category][article.subcategory] = [article]
+        }
+      }
+    })
+
+    return res.send(categories)
   }
 }
 

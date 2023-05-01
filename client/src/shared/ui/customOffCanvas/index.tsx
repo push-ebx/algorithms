@@ -36,7 +36,14 @@ export const CustomOffCanvas = (props: Props) => {
         className={style.main}  
       >
         <Offcanvas.Header closeButton className={style.header}>
-          <Offcanvas.Title>Содержание</Offcanvas.Title>
+          <Offcanvas.Title>
+            <Link
+              onClick={() => dispatch(props.setShow(false))} 
+              to={"/"}
+            >
+              Содержание
+            </Link>
+          </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body className={style.body}>
           <ul style={{display: 'flex', flexDirection: 'column'}}>

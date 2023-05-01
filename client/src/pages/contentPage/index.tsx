@@ -1,14 +1,31 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { getAllArticles } from 'shared/api/articles';
-import { Article } from 'shared/model';
+import { getAllByCategories } from 'shared/api/articles';
+import { ArticleByCategory } from 'shared/model';
+import { Title } from 'shared/ui';
+import style from "./style.module.scss"
+import { Card } from './ui/card';
 
 const Content = () => {
-  const [articles, setArticles] = useState<Article[]>([])
+  const [articles, setArticles] = useState<ArticleByCategory[]>([])
+  // const [articlesByCategory, setArticlesByCategory] = useState<>()
 
   const fetchArticles = async () => {
-    const res = await getAllArticles()
-    res && setArticles(res)
+    const res = await getAllByCategories()
+    res && setArticles(res) 
+
+    var grid = document.querySelector('.grid');
+    // @ts-ignore
+    var msnry = new Masonry( grid, {
+      gutter: 10,
+      itemSelector: '.grid-item',
+      columnWidth: 400
+    });
+
+    // init with selector
+    // @ts-ignore
+    // var msnry = new Masonry( '.grid', {
+    //   // options...
+    // });
   }
 
   useEffect(() => {
@@ -16,24 +33,27 @@ const Content = () => {
   }, [])
 
   return (
-    <div>
-      <h1 style={{color: 'var(--text-color)', textAlign: 'center'}}>Content</h1>
-      <ul style={{display: 'flex', flexDirection: 'column'}}>
-        {
-          articles.map(article => {
-            return (
-              <li>
-                <Link
-                  key={article.id}
-                  to={`/article?title=${article.title}`}
-                >
-                  {article.title}
-                </Link>
-              </li>
-            )
-          })
-        }
-      </ul>
+    <div className={style.wrapper}>
+      <Title className={style.title}>Содержание</Title>
+      <div>
+        <div className={`grid ${style.cards}`} data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 400 }'>
+          {
+            Object.entries(articles).map(([key, category]) => {
+              return <Card key={key} className='grid-item' category={category} name={key}></Card>
+            })
+          }
+          {
+            Object.entries(articles).map(([key, category]) => {
+              return <Card key={key} className='grid-item' category={category} name={key}></Card>
+            })
+          }
+          {
+            Object.entries(articles).map(([key, category]) => {
+              return <Card key={key} className='grid-item' category={category} name={key}></Card>
+            })
+          }
+        </div>
+      </div>
     </div>
   );
 }

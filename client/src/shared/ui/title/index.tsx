@@ -2,11 +2,14 @@ import { ReactNode } from "react";
 import style from './style.module.scss'
  
 type Props = {
-  children: ReactNode
+  children: ReactNode,
+  className?: string,
 }
 
-export const Title = ({children}: Props) => {
+export const Title = (props: Props) => {
   return (
-    <div className={style.title}>{children}</div>
+    <div className={`${style.title} ${props.className}`}>
+      {props.children}
+    </div>
   );
 };

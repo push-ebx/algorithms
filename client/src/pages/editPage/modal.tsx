@@ -42,6 +42,13 @@ export const CustomModal = (props: Props) => {
             placeholder="Выберите раздел..."
           />
         </div>
+        <div>
+          <span>Подраздел:</span>
+          <Input
+            onChange={subcategory => props.setArticle(prev => ({...prev, subcategory}))}
+            placeholder="Выберите подраздел..."
+          />
+        </div>
       </div>
     </Modal>
   )

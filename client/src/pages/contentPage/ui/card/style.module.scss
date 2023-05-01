@@ -1,0 +1,42 @@
+@import "app/styles/vars";
+
+.card {
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid #A0A0A0; // aoaooaoao
+  padding: 20px;
+  margin-bottom: 20px;
+
+  li {
+    margin-left: 20px;
+    list-style: disc;
+    &::marker {
+      color: $text-color;
+      font-weight: bold;
+      background-color: $text-color;
+    }
+  }
+
+  .link {
+    color: $red-color;
+  }
+
+  .subtitle {
+    margin: 0;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+  }
+  
+  .subsubtitle {
+    margin: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    
+    &::before {
+      content: "/ ";
+      color: $red-color;
+      top: 0px;
+    }
+  }
+}

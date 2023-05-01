@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { Article } from 'shared/model';
-// тут импорт модели типо
+import { Article, ArticleByCategory } from 'shared/model';
 
 const axios_proxy = axios.create({
   baseURL: `http://localhost:4000/api/articles/`
@@ -18,7 +17,6 @@ export const getArticleByTitle = async (title: string): Promise<Article | undefi
   }
 }
 
-
 export const createArticle = async (article: Article): Promise<string | undefined> => {
   try {
     const res = await axios_proxy.post(`/create`, article)
@@ -31,6 +29,15 @@ export const createArticle = async (article: Article): Promise<string | undefine
 export const getAllArticles = async (): Promise<Article[] | undefined> => {
   try {
     const res = await axios_proxy.get(`/getAll`)
+    return res.data
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+export const getAllByCategories = async (): Promise<ArticleByCategory[] | undefined> => {
+  try {
+    const res = await axios_proxy.get(`/getAllByCategories`)
     return res.data
   } catch (e) {
     console.log(e)

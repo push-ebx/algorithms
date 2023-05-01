@@ -2,11 +2,14 @@ import { ReactNode } from "react";
 import style from './style.module.scss'
  
 type Props = {
-  children: ReactNode
+  children: ReactNode,
+  className?: string,
 }
 
-export const Subtitle = ({children}: Props) => {
+export const Subtitle = (props: Props) => {
   return (
-    <h1 className={style.subtitle}>{children}</h1>
+    <h2 className={`${style.subtitle} ${props.className}`}>
+      {props.children}
+    </h2>
   );
 };

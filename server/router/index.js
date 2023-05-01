@@ -12,5 +12,6 @@ router.post('/articles/create', articles.create);
 router.get('/articles/getById', articles.getById);
 router.get('/articles/getByTitle', articles.getByTitle);
 router.get('/articles/getAll', articles.getAll);
+router.get('/articles/getAllByCategories', articles.getAllByCategories);
 
 module.exports = router;

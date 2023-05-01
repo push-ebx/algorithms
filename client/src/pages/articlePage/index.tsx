@@ -15,6 +15,7 @@ const ArticlePage = () => {
 
     if (title) {
       const res = await getArticleByTitle(title)
+      
       const url = res?.file_url
 
       return url && axios.get(url).then(res => {

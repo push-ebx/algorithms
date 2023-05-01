@@ -4,11 +4,12 @@
   color: $subtitle-color;
   font-size: $subtitle-size;
   font-weight: bold;
+  margin: 20px 0;
 
-  &::after {
-    content: " #";
+  &::before {
+    content: "// ";
     color: $red-color;
     position: relative;
-    top: 2px;
+    top: -2px;
   }
 }
