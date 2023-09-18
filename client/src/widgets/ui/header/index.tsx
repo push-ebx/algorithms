@@ -1,5 +1,5 @@
 import style from './style.module.scss'
-import { Input, Logo } from "shared/ui";
+import { Logo } from "shared/ui";
 import SwitchTheme from '../../../features/switchTheme';
 import { Link } from 'react-router-dom';
 import { ReactComponent as CollapseButton} from './CollapseButton.svg'
@@ -25,7 +25,7 @@ export const Header = () => {
       </div>
       <Link to="/"><Logo className={style.logo}>Algs</Logo></Link>
       <div className={style.search_theme_user}>
-        <Input onChange={()=>{}} className={style.input} placeholder="Поиск..." />
+        {/*<Input onChange={()=>{}} className={style.input} placeholder="Поиск..." />*/}
         <SwitchTheme />
         <User stroke={theme === 'dark' ? 'white' : 'black'}/>
       </div>

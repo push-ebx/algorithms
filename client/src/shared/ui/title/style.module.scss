@@ -5,10 +5,15 @@
   font-size: $title-size;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 50px;
+  margin: 0 1rem 50px;
+  overflow-wrap: break-word;
 
   &::before {
     content: "/// ";
     color: $red-color;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: $title-color-xs;
   }
 }

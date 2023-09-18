@@ -13,6 +13,7 @@ export const Card = ({category, ...props}: Props) => {
   return (
     <div className={`${style.card} ${props.className}`}>
       <Subtitle className={style.subtitle}>{props.name}</Subtitle>
+      <hr/>
       {
         Object.entries(category).map(([key, sub_articles]) => {
           return (

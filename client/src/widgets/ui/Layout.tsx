@@ -1,7 +1,7 @@
 import { Header } from "widgets/ui/header";
 import { Outlet } from "react-router-dom"
 import { CustomOffCanvas } from "shared/ui";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { setShowOffCanvas } from "shared/ui/customOffCanvas/customOffCanvasSlice";
 
 const Layout = () => {
