@@ -70,6 +70,7 @@ const EditPage = () => {
 
   const saveDraw = () => {
     if (article?.title && article?.author && article?.category) {
+      article.is_draw = true
       uploadArticle()
       setModalActive(false)
     }
@@ -95,7 +96,7 @@ const EditPage = () => {
         <Button
           onClick={() => setModalActive(true)}
         >
-          Сохранить черновик
+          Сохранить
         </Button>
         <Button>Опубликовать</Button>
       </nav>

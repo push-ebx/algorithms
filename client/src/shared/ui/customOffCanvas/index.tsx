@@ -49,17 +49,19 @@ export const CustomOffCanvas = (props: Props) => {
           <ul style={{display: 'flex', flexDirection: 'column'}}>
             {
               articles.map(article => {
-                return (
-                  <li>
-                    <Link
-                      key={article.id}
-                      to={`/article?title=${article.title}`}
-                      onClick={() => dispatch(props.setShow(false))}
-                    >
-                      {article.title}
-                    </Link>
-                  </li>
-                )
+                if (article) {
+                  return (
+                    <li>
+                      <Link
+                        key={article.id}
+                        to={`/article?title=${article.title}`}
+                        onClick={() => dispatch(props.setShow(false))}
+                      >
+                        {article.title}
+                      </Link>
+                    </li>
+                  )
+                }
               })
             }
           </ul>

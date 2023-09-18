@@ -19,12 +19,22 @@ class Articles {
   }
 
   async create(req, res) { // проверка на уникальность title
-    const {author, author_id, category, subcategory, date_creation, date_publication, file_url, title} = req.body
+    const {
+      author,
+      author_id,
+      category,
+      subcategory,
+      date_creation,
+      date_publication,
+      file_url,
+      title,
+      is_draw
+    } = req.body
 
     const snapshot = await Article.get();
     const count_articles = snapshot.size
     console.log(count_articles)
-    await Article.doc(count_articles+1+'').set({
+    await Article.doc(count_articles + 1 + '').set({
       author,
       // author_id,
       category,
@@ -32,30 +42,43 @@ class Articles {
       // date_creation,
       // date_publication,
       file_url,
-      title
+      title,
+      is_draw
     });
 
     return res.send('article was created')
   }
 
   async edit(req, res) { // проверка на уникальность title
-    const {author, author_id, category, subcategory, date_creation, date_publication, file_url, title, old_title} = req.body
+    const {
+      author,
+      author_id,
+      category,
+      subcategory,
+      date_creation,
+      date_publication,
+      file_url,
+      title,
+      old_title,
+      is_draw
+    } = req.body
 
     const snapshot = await Article.where('title', '==', old_title).get();
     if (snapshot.empty) {
       console.log('No matching documents.');
       return;
     }
-    const id_old_article  = snapshot.docs[0].id
+    const id_old_article = snapshot.docs[0].id
     await Article.doc(id_old_article).update({
-        author,
-        // author_id,
-        category,
-        subcategory,
-        // date_creation,
-        // date_publication,
-        file_url,
-        title
+      author,
+      // author_id,
+      category,
+      subcategory,
+      // date_creation,
+      // date_publication,
+      file_url,
+      title,
+      is_draw
     })
 
     // await Article.doc().set({
@@ -93,17 +116,22 @@ class Articles {
   }
 
   async getAll(req, res) {
+    // если автор статьи и пользователь который запрашивает совпадают, то вернуть статью даже если черновик
     const snapshot = await Article.get()
 
     const articles = snapshot.docs.map(doc => {
       const data = doc.data()
-      return {
-        id: +doc.id,
-        category: data.category,
-        subcategory: data.subcategory,
-        title: data.title,
-        file_url: data.file_url,
-        author: data.author
+
+      if (!data.is_draw || true) { // !!!!!!!
+        return {
+          id: +doc.id,
+          category: data.category,
+          subcategory: data.subcategory,
+          title: data.title,
+          file_url: data.file_url,
+          author: data.author,
+          is_draw: data.is_draw
+        }
       }
     });
 
@@ -126,7 +154,7 @@ class Articles {
     });
 
     const categories = {}
-    
+
     // PZDC O(n)
     articles.forEach(article => {
       if (article.category && article.subcategory) {
@@ -139,8 +167,7 @@ class Articles {
 
         if (categories[article.category][article.subcategory].length) {
           categories[article.category][article.subcategory].push(article)
-        }
-        else {
+        } else {
           categories[article.category][article.subcategory] = [article]
         }
       }

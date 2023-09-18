@@ -5,6 +5,7 @@ export interface Article {
   file_url?: string;
   category?: string;
   subcategory?: string;
+  is_draw?: boolean;
 }
 
 export interface ArticleByCategory {
