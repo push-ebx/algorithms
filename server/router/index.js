@@ -9,6 +9,7 @@ router.get('/users/getAll', users.getAll);
 router.post('/users/create', users.create);
 
 router.post('/articles/create', articles.create);
+router.post('/articles/edit', articles.edit);
 router.get('/articles/getById', articles.getById);
 router.get('/articles/getByTitle', articles.getByTitle);
 router.get('/articles/getAll', articles.getAll);

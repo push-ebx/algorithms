@@ -6,6 +6,7 @@ type Props = {
   className?: string,
   style?: CSSProperties,
   onChange: (value: string) => void,
+  value?: string
 }
 
 export const Input = (props: Props) => {
@@ -16,6 +17,7 @@ export const Input = (props: Props) => {
       style={style}
       type="text"
       onChange={(e) => props.onChange(e.target.value)}
+      value={props.value}
     />
   );
 };

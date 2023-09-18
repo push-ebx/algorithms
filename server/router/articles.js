@@ -38,6 +38,40 @@ class Articles {
     return res.send('article was created')
   }
 
+  async edit(req, res) { // проверка на уникальность title
+    const {author, author_id, category, subcategory, date_creation, date_publication, file_url, title, old_title} = req.body
+
+    const snapshot = await Article.where('title', '==', old_title).get();
+    if (snapshot.empty) {
+      console.log('No matching documents.');
+      return;
+    }
+    const id_old_article  = snapshot.docs[0].id
+    await Article.doc(id_old_article).update({
+        author,
+        // author_id,
+        category,
+        subcategory,
+        // date_creation,
+        // date_publication,
+        file_url,
+        title
+    })
+
+    // await Article.doc().set({
+    //   author,
+    //   // author_id,
+    //   category,
+    //   subcategory,
+    //   // date_creation,
+    //   // date_publication,
+    //   file_url,
+    //   title
+    // });
+
+    return res.send('article was edited')
+  }
+
   async getByTitle(req, res) {
     const {title} = req.query
 
@@ -48,6 +82,7 @@ class Articles {
     const snap_article = await Article.where('title', '==', title).get()
 
     if (snap_article.empty) {
+      res.statusCode = 400
       return res.send('No matching articles')
     }
     const article = {

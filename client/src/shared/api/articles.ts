@@ -6,40 +6,30 @@ const axios_proxy = axios.create({
 });
 
 export const getArticleByTitle = async (title: string): Promise<Article | undefined> => {
-  try {
-    if (title) {
-      const res = await axios_proxy.get(`/getByTitle?title=${title}`)
-      return res.data
-    }
-    else throw new Error("title param is empty")
-  } catch (e) {
-    console.log(e)
+  if (title) {
+    const res = await axios_proxy.get(`/getByTitle?title=${title}`)
+    if (!res.data) throw new Error("Article not found")
+    return res.data
   }
+  else throw new Error("Title param is empty")
 }
 
 export const createArticle = async (article: Article): Promise<string | undefined> => {
-  try {
-    const res = await axios_proxy.post(`/create`, article)
-    return res.data
-  } catch (e) {
-    console.log(e)
-  }
+  const res = await axios_proxy.post(`/create`, article)
+  return res.data
+}
+
+export const editArticle = async (article: Article, old_title: string): Promise<string | undefined> => {
+  const res = await axios_proxy.post(`/edit`, {...article, old_title})
+  return res.data
 }
 
 export const getAllArticles = async (): Promise<Article[] | undefined> => {
-  try {
-    const res = await axios_proxy.get(`/getAll`)
-    return res.data
-  } catch (e) {
-    console.log(e)
-  }
+  const res = await axios_proxy.get(`/getAll`)
+  return res.data
 }
 
 export const getAllByCategories = async (): Promise<ArticleByCategory[] | undefined> => {
-  try {
-    const res = await axios_proxy.get(`/getAllByCategories`)
-    return res.data
-  } catch (e) {
-    console.log(e)
-  }
+  const res = await axios_proxy.get(`/getAllByCategories`)
+  return res.data
 }

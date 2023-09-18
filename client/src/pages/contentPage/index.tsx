@@ -36,17 +36,24 @@ const Content = () => {
     <div className={style.wrapper}>
       <Title className={style.title}>Содержание</Title>
       <div>
-        <div className={`grid ${style.cards}`} data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 400 }'>
-          {
-            Object.entries(articles).map(([key, category]) => {
-              return <Card key={key} className='grid-item' category={category} name={key}></Card>
-            })
-          }
-          {
-            Object.entries(articles).map(([key, category]) => {
-              return <Card key={key} className='grid-item' category={category} name={key}></Card>
-            })
-          }
+        {/*<div className={`grid ${style.cards}`} data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 400 }'>*/}
+        {/*  {*/}
+        {/*    Object.entries(articles).map(([key, category]) => {*/}
+        {/*      return <Card key={key} className='grid-item' category={category} name={key}></Card>*/}
+        {/*    })*/}
+        {/*  }*/}
+        {/*  {*/}
+        {/*    Object.entries(articles).map(([key, category]) => {*/}
+        {/*      return <Card key={key} className='grid-item' category={category} name={key}></Card>*/}
+        {/*    })*/}
+        {/*  }*/}
+        {/*  {*/}
+        {/*    Object.entries(articles).map(([key, category]) => {*/}
+        {/*      return <Card key={key} className='grid-item' category={category} name={key}></Card>*/}
+        {/*    })*/}
+        {/*  }*/}
+        {/*</div>*/}
+        <div>
           {
             Object.entries(articles).map(([key, category]) => {
               return <Card key={key} className='grid-item' category={category} name={key}></Card>

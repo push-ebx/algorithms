@@ -10,6 +10,7 @@ type Props = {
   saveDraw: () => void,
   modalActive: boolean,
   setArticle: Dispatcher<Article | undefined>,
+  article?: Article
 }
 
 export const CustomModal = (props: Props) => {
@@ -26,6 +27,7 @@ export const CustomModal = (props: Props) => {
           <Input
             onChange={title => props.setArticle(prev => ({...prev, title}))}
             placeholder="Введите название статьи..."
+            value={props?.article?.title}
           />
         </div>
         <div>
@@ -33,6 +35,7 @@ export const CustomModal = (props: Props) => {
           <Input
             onChange={author => props.setArticle(prev => ({...prev, author}))}
             placeholder="Введите имя автора..."
+            value={props?.article?.author}
           />
         </div>
         <div>
@@ -40,6 +43,7 @@ export const CustomModal = (props: Props) => {
           <Input
             onChange={category => props.setArticle(prev => ({...prev, category}))}
             placeholder="Выберите раздел..."
+            value={props?.article?.category}
           />
         </div>
         <div>
@@ -47,6 +51,7 @@ export const CustomModal = (props: Props) => {
           <Input
             onChange={subcategory => props.setArticle(prev => ({...prev, subcategory}))}
             placeholder="Выберите подраздел..."
+            value={props?.article?.subcategory}
           />
         </div>
       </div>

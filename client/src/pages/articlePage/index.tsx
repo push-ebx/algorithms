@@ -14,14 +14,18 @@ const ArticlePage = () => {
     const title = searchParams.get('title')
 
     if (title) {
-      const res = await getArticleByTitle(title)
-      
-      const url = res?.file_url
+      try {
+        const res = await getArticleByTitle(title)
+        console.log(res)
+        const url = res?.file_url
 
-      return url && axios.get(url).then(res => {
+        return url && axios.get(url).then(res => {
+          setIsLoading(false)
+          setValue(res.data)
+        })
+      } catch (e) {
         setIsLoading(false)
-        return setValue(res.data)
-      })
+      }
     }
     setValue('# Page not found')
   }
