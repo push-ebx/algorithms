@@ -10,10 +10,41 @@
   min-width: 300px !important;
 }
 
-.body {
-
+.off_canvas_body {
+  max-width: 15rem;
+  padding: 0;
 }
 
 li {
   list-style: none;
+  font-size: $text-size;
+}
+
+.accordion {
+  background: transparent;
+}
+
+.accordion_item {
+  background: transparent;
+  border: 0;
+  padding: .5rem;
+
+  &:hover {
+    background: $background-page-color;
+  }
+}
+
+button {
+  background: transparent !important;
+  color: $text-color !important;
+  box-shadow: none !important;
+  padding: 0 0.5rem !important;
+
+  &:after {
+    content: none !important; // стрелочка
+  }
+}
+
+.accordion_body {
+  padding: 0.5rem 1rem !important;
 }

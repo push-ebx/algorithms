@@ -1,10 +1,11 @@
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import Accordion from 'react-bootstrap/Accordion';
 import { ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { ReactNode, useEffect, useState } from 'react';
-import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useDispatch } from 'react-redux';
 import style from './style.module.scss'
-import { getAllArticles } from 'shared/api/articles';
-import { Article } from 'shared/model';
+import {getAllByCategories} from 'shared/api/articles';
+import {Article, ArticleByCategory} from 'shared/model';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -15,10 +16,10 @@ type Props = {
 }
 
 export const CustomOffCanvas = (props: Props) => {
-  const [articles, setArticles] = useState<Article[]>([])
+  const [articles, setArticles] = useState<ArticleByCategory[]>([])
 
   const fetchArticles = async () => {
-    const res = await getAllArticles()
+    const res = await getAllByCategories()
     res && setArticles(res)
   }
 
@@ -33,7 +34,7 @@ export const CustomOffCanvas = (props: Props) => {
       <Offcanvas 
         show={props.show}
         onHide={() => dispatch(props.setShow(false))}
-        className={style.main}  
+        className={style.main}
       >
         <Offcanvas.Header closeButton className={style.header}>
           <Offcanvas.Title>
@@ -45,26 +46,50 @@ export const CustomOffCanvas = (props: Props) => {
             </Link>
           </Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body className={style.body}>
-          <ul style={{display: 'flex', flexDirection: 'column'}}>
+        <Offcanvas.Body className={style.off_canvas_body}>
+          {/*хфывхфхафхывхыфхывфххфывхфхафхывхыфхывфххфывхфхафхывхыфхывфххфывхфхафхывхыфхывфх*/}
+          <Accordion defaultActiveKey={""} flush alwaysOpen className={style.accordion}>
             {
-              articles.map(article => {
-                if (article) {
-                  return (
-                    <li>
-                      <Link
-                        key={article.id}
-                        to={`/article?title=${article.title}`}
-                        onClick={() => dispatch(props.setShow(false))}
-                      >
-                        {article.title}
-                      </Link>
-                    </li>
-                  )
-                }
-              })
+              Object.entries(articles).map(([key, category]) => (
+                <Accordion.Item eventKey={key} className={style.accordion_item}>
+                  <Accordion.Header className={style.accordion_header}>
+                    {key}
+                  </Accordion.Header>
+                  <Accordion.Body className={style.accordion_body}>
+                    {
+                      Object.entries(category).map(([key, sub_articles]) => {
+                        return (
+                          <Accordion defaultActiveKey={""} flush alwaysOpen className={style.accordion}>
+                            <Accordion.Item eventKey={key} className={style.accordion_item}>
+                                <Accordion.Header className={style.accordion_header}>
+                                  {key}
+                                </Accordion.Header>
+                                <Accordion.Body className={style.accordion_body}>
+                                  {
+                                    sub_articles.map((article: Article) => {
+                                      return (
+                                        <li key={article.id}>
+                                          <Link
+                                            to={`/article?title=${article.title}`}
+                                            className={style.link}
+                                          >
+                                            {article.title}
+                                          </Link>
+                                        </li>
+                                      )
+                                    })
+                                  }
+                                </Accordion.Body>
+                            </Accordion.Item>
+                          </Accordion>
+                        )
+                      })
+                    }
+                  </Accordion.Body>
+                </Accordion.Item>
+              ))
             }
-          </ul>
+          </Accordion>
         </Offcanvas.Body>
       </Offcanvas>
     </>
