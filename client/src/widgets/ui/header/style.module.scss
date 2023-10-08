@@ -2,7 +2,7 @@
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   height: 75px;
   background-color: $header-color;
@@ -16,13 +16,13 @@
 }
 
 .wrapper_collapse_btn {
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  left: 40px;
+
   width: 40px;
   height: 40px;
+
   border-radius: 50px;
   cursor: pointer;
 
@@ -33,15 +33,13 @@
 
 .search_theme_user {
   display: flex;
-  position: absolute;
-  right: 40px;
   align-items: center;
-  column-gap: 40px;
+  gap: 1rem;
 }
 
 .logo {
   position: relative;
-  bottom: 5px;
+  //bottom: 5px;
 }
 
 .input {

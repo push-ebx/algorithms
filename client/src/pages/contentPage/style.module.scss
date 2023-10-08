@@ -1,7 +1,7 @@
 $card-width: 20rem;
 
 .title {
-  margin-top: 30px;
+  margin-top: 1.5rem;
 }
 
 .cards {
@@ -17,6 +17,8 @@ $card-width: 20rem;
   }
 }
 
-.wrapper {
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
-

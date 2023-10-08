@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { getAllByCategories } from 'shared/api/articles';
 import { ArticleByCategory } from 'shared/model';
-import { Title } from 'shared/ui';
+import {Loader, Title} from 'shared/ui';
 import style from "./style.module.scss"
 import { Card } from './ui/card';
 
 const Content = () => {
   const [articles, setArticles] = useState<ArticleByCategory[]>([])
-  // const [articlesByCategory, setArticlesByCategory] = useState<>()
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchArticles = async () => {
+    setIsLoading(true)
     const res = await getAllByCategories()
     res && setArticles(res)
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -21,7 +23,8 @@ const Content = () => {
   return (
     <div className={style.wrapper}>
       <Title className={style.title}>Содержание</Title>
-        <div className={style.cards}>
+      { !isLoading ?
+        (<div className={style.cards}>
           {
             Object.entries(articles).map(([key, category]) => (
               <Card key={key} category={category} name={key}></Card>
@@ -37,7 +40,10 @@ const Content = () => {
               <Card key={key} category={category} name={key}></Card>
             ))
           }
-        </div>
+        </div>)
+        : (
+        <Loader className={style.loader}/>
+      )}
     </div>
   );
 }

@@ -24,7 +24,7 @@ export const CustomOffCanvas = (props: Props) => {
   }
 
   useEffect(() => {
-    fetchArticles()
+    fetchArticles() // неэффективно
   }, [])
 
   const dispatch = useDispatch()

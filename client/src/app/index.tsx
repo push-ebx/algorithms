@@ -5,6 +5,7 @@ import Content from 'pages/contentPage';
 import Layout from "widgets/ui/Layout"
 import EditPage from 'pages/editPage/';
 import ArticlePage from 'pages/articlePage';
+import AuthPage from "../pages/authPage";
 
 export default function App() {
   useEffect(() => {
@@ -16,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Content />} />
+          <Route path="auth" element={<AuthPage />} />
           <Route path="article" element={<ArticlePage />} />
           <Route path="article/edit" element={<EditPage />} />
           <Route path="article/create" element={<EditPage />} />

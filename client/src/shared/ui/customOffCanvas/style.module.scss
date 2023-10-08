@@ -5,6 +5,8 @@
 }
 
 .main {
+  margin: 0.5rem;
+  border-radius: 5px;
   background-color: $background-article-color;
   width: auto !important;
   min-width: 300px !important;
@@ -18,31 +20,38 @@
 li {
   list-style: none;
   font-size: $text-size;
+
+  &::marker {
+    content: "> ";
+    color: $text-color;
+    background-color: $text-color;
+  }
 }
 
 .accordion {
   background: transparent;
+
+  button {
+    font-size: $text-size !important;
+    background: transparent !important;
+    color: $text-color !important;
+    box-shadow: none !important;
+    padding: 0 0.5rem !important;
+
+    &:after {
+      content: none !important; // стрелочка
+    }
+  }
 }
 
 .accordion_item {
   background: transparent;
   border: 0;
-  padding: .5rem;
+  padding: 0.1rem .5rem;
 
-  &:hover {
-    background: $background-page-color;
-  }
-}
-
-button {
-  background: transparent !important;
-  color: $text-color !important;
-  box-shadow: none !important;
-  padding: 0 0.5rem !important;
-
-  &:after {
-    content: none !important; // стрелочка
-  }
+  //&:hover {
+  //  background: $background-page-color;
+  //}
 }
 
 .accordion_body {

@@ -21,7 +21,7 @@
     font-size: $text-size;
 
     @media screen and (max-width: 400px) {
-      font-size: $text-size-xs;
+      //font-size: $text-size-xs;
     }
   }
 
@@ -43,7 +43,7 @@
     }
 
     @media screen and (max-width: 400px) {
-      font-size: $subsubtitle-size-xs;
+      //font-size: $subsubtitle-size-xs;
     }
   }
 }
